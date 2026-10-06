@@ -10,7 +10,7 @@ import hashlib, uuid
 app = FastAPI(title='Atharuhum — Digital Sanad', version='1.0.0')
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
 BASE_DIR = Path(__file__).resolve().parent
-FRONTEND_DIR = BASE_DIR.parent / 'frontend'
+FRONTEND_DIR = BASE_DIR / 'frontend'
 
 sources = [
  {'id':'SRC-001','title':'صحيح البخاري','type':'حديث','authority':'الإمام البخاري','status':'موثق','year':'256هـ'},
