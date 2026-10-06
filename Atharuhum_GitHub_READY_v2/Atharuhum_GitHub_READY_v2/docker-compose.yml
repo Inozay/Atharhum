@@ -1,0 +1,9 @@
+services:
+  atharuhum:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      PUBLIC_BASE_URL: http://localhost:8000
+      DATABASE_PATH: /app/backend/atharuhum.db
+    restart: unless-stopped
