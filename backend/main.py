@@ -75,11 +75,20 @@ def journey():
 def activity():
  return {'items':[{'time':'منذ 4 دقائق','event':'تم التحقق من ATH-001','type':'verification'},{'time':'منذ 19 دقيقة','event':'أكملت مؤسسة الرحلة التعليمية #347','type':'learning'},{'time':'منذ ساعة','event':'تم اعتماد الإصدار 3.0 من ATH-003','type':'approval'}]}
 
-if FRONTEND_DIR.exists():
-    app.mount('/app', StaticFiles(directory=str(FRONTEND_DIR), html=True), name='frontend')
+FRONTEND_DIR = Path("/app/frontend")
 
-@app.get('/')
+if FRONTEND_DIR.exists():
+    app.mount("/app", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
+
+@app.get("/")
 def root():
-    if FRONTEND_DIR.exists():
-        return FileResponse(str(FRONTEND_DIR / 'index.html'))
-    return {'service':'atharuhum','message':'frontend not mounted'}
+    index_file = FRONTEND_DIR / "index.html"
+
+    if index_file.exists():
+        return FileResponse(index_file)
+
+    return {
+        "service": "atharuhum",
+        "message": "frontend not found",
+        "frontend_path": str(FRONTEND_DIR)
+    }
