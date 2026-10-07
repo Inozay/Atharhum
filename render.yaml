@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: atharhum
-    runtime: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    healthCheckPath: /api/health
-    autoDeploy: true
