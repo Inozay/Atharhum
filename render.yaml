@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: atharhum-production
+    runtime: python
+    plan: starter
+    buildCommand: python -m py_compile server.py
+    startCommand: python server.py
+    healthCheckPath: /health
+    envVars:
+      - key: ATHARHUM_SECRET
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ATHARHUM_DB_PATH
+        value: /opt/render/project/src/data/atharhum.db
+    disk:
+      name: atharhum-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
